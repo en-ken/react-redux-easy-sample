@@ -9,6 +9,8 @@ import {
 
 import appReducers from "./reducers";
 
+import UserList from "./containers/user-list";
+
 
 const store = createStore(
   appReducers
@@ -21,7 +23,7 @@ const App = () => (
   <Provider store={store}>
     <Router>
       <Switch>
-        <Route exact path="/" />
+        <Route exact path="/" component={UserList} />
       </Switch>
     </Router>
   </Provider>
