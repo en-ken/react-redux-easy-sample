@@ -1,0 +1,6 @@
+node_modules/
+webpack.*.js
+dst/
+jest.*
+sonar.js
+*.conf.js

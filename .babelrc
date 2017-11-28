@@ -1,0 +1,19 @@
+{
+    "plugins": ["transform-object-rest-spread"],
+    "presets": [
+        [
+            "env",
+            {
+                "targets": {
+                    "browsers": [
+                        "last 2 versions",
+                        "Firefox ESR",
+                        "not ie <= 10"
+                    ]
+                },
+                "useBuiltIns": false
+            }
+        ],
+        "react"
+    ]
+}
