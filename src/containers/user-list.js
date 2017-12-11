@@ -7,16 +7,11 @@ import Table, {
   TableRow,
   TableCell,
 } from "material-ui/Table";
-import { CircularProgress } from "material-ui/Progress";
 import Button from "material-ui/Button";
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "material-ui/Dialog";
-import TextField from "material-ui/TextField";
 import { withStyles } from "material-ui/styles";
+
+import CreationDialog from "../components/creation-dialog";
+import LoadingProgress from "../components/loading-progress";
 
 import actions from "../actions";
 import { fetchUserList, addUser } from "../apis";
@@ -128,77 +123,6 @@ class UserList extends React.Component {
     );
   }
 }
-
-const LoadingProgress = props =>
-  (
-    <div className={props.classes.loading}>
-      <CircularProgress size={100} />
-    </div>
-  );
-
-
-/**
- * 新規作成ダイアログ
- */
-class CreationDialog extends React.Component {
-  render() {
-    const {
-      loaded,
-      isOpen,
-      handleClose,
-      handleCreateUser,
-    } = this.props;
-
-    const onChange = e => {
-      this[e.target.id] = e.target.value;
-    };
-    const onCreate = () => handleCreateUser(this.name, this.info);
-    const onCancel = () => handleClose();
-
-    return (
-      <div>
-        <Dialog
-          open={isOpen}
-          onRequestClose={handleClose}>
-          <DialogTitle>Create New User</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Input User Info
-            </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Name"
-              type="text"
-              fullWidth
-              onChange={onChange}
-            />
-            <TextField
-              margin="dense"
-              id="info"
-              label="Info"
-              type="text"
-              fullWidth
-              onChange={onChange}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={onCancel} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={onCreate} color="primary">
-              Create
-            </Button>
-          </DialogActions>
-        </Dialog>
-        {!loaded && <LoadingProgress {...this.props} />}
-      </div>
-    );
-
-  }
-}
-
 
 const mapStateToProps = state => ({ ...state.userList });
 
